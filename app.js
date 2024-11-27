@@ -1,4 +1,3 @@
-// app.js
 import { questions } from "./questions.js";
 
 let selectedCategory = null;
@@ -42,13 +41,13 @@ function startQuiz(category) {
 // Carrega a pergunta atual
 function loadQuestion() {
   const current = selectedQuestions[currentQuestion];
-  questionEl.textContent = current.question;
+  questionEl.textContent = current.pergunta; // Modificado para acessar "pergunta"
   optionsEl.innerHTML = "";
 
-  current.options.forEach((option, index) => {
+  current.respostas.forEach((resposta, index) => { // Modificado para acessar "respostas"
     const button = document.createElement("button");
     button.classList.add("option");
-    button.textContent = option;
+    button.textContent = resposta;
     button.addEventListener("click", () => checkAnswer(index));
     optionsEl.appendChild(button);
   });
@@ -58,7 +57,7 @@ function loadQuestion() {
 
 // Verifica a resposta
 function checkAnswer(selected) {
-  const correct = selectedQuestions[currentQuestion].answer;
+  const correct = selectedQuestions[currentQuestion].respostaCorreta; // Modificado para acessar "respostaCorreta"
   if (selected === correct) {
     score++;
   }
